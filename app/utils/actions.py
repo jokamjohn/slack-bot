@@ -36,4 +36,4 @@ class Actions:
 
     @staticmethod
     def send_headlines_to_user(user_id):
-        return slack_helper.post_message(news.get_top_headlines(), user_id)
+        return slack_helper.post_message_to_user_with_attachments(news.get_top_headlines(), user_id)

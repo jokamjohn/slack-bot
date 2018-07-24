@@ -38,6 +38,14 @@ class SlackHelper:
             as_user=False
         )
 
+    def post_message_to_user_with_attachments(self, message, recipient):
+        return self.slack_client.api_call(
+            "chat.postMessage",
+            channel=recipient,
+            attachments=json.dumps(message),
+            as_user=True
+        )
+
     def file_upload(self, file_content, file_name, file_type, title=None, ):
         return self.slack_client.api_call(
             "files.upload",
