@@ -29,3 +29,7 @@ class Actions:
     @staticmethod
     def get_user_info(uid):
         return slack_helper.get_user_info(uid)
+
+    @staticmethod
+    def send_to_user(user_id, msg):
+        return slack_helper.post_message(msg, user_id)

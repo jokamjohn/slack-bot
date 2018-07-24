@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, jsonify
+from flask import Flask, request, jsonify
 from app.utils.actions import Actions
 
 app = Flask(__name__)
@@ -14,7 +14,6 @@ def home():
 def lit():
     command = request.form.get('text')
     slack_user_uid = request.form.get('user_id')
-    slack_user_info = Actions.get_user_info(slack_user_uid)
     response_body = ''
 
     if command not in Actions.allowed_commands():
@@ -25,5 +24,8 @@ def lit():
 
     if command == 'headlines':
         response_body = Actions.headlines()
+        Actions.send_to_user(slack_user_uid)
 
-    return make_response(jsonify(response_body)), 200
+    response = jsonify(response_body)
+    response.status_code = 200
+    return response
