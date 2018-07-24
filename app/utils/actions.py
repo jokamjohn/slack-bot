@@ -11,13 +11,17 @@ class Actions:
     @staticmethod
     def help():
         return {
-            "text": "Available Commands: \n " +
-                    "`/lit headlines` To get the top headlines"
+            "text": "Available Commands",
+            "attachments": [
+                {
+                    "text": "`/lit headlines` To get the top headlines"
+                }
+            ]
         }
 
     @staticmethod
     def headlines():
-        return slack_helper.post_message_to_channel(news.get_top_headlines())
+        slack_helper.post_message_with_attachment(news.get_top_headlines())
 
     @staticmethod
     def allowed_commands():

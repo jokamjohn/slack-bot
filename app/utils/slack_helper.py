@@ -1,5 +1,6 @@
 from slackclient import SlackClient
 from config import get_env
+import json
 
 
 class SlackHelper:
@@ -24,6 +25,16 @@ class SlackHelper:
             text=msg,
             username="lit",
             parse="full",
+            as_user=False
+        )
+
+    def post_message_with_attachment(self, message):
+        return self.slack_client.api_call(
+            "chat.postMessage",
+            channel=self.slack_channel,
+            username="lit",
+            parse="full",
+            attachments=json.dumps(message),
             as_user=False
         )
 

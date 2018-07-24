@@ -1,4 +1,4 @@
-import requests
+import requests, json
 
 
 class NewsAPI:
@@ -10,7 +10,7 @@ class NewsAPI:
     #     data = requests.get(self.base_url)
 
     def get_top_headlines(self):
-        slack_text = ""
+        slack_msg = []
         url = self.base_url + "top-headlines?country=us" + "&apikey=" + self.api_key
         data = requests.get(url)
         if data.status_code == 200:
@@ -23,17 +23,31 @@ class NewsAPI:
                 url = article['url']
                 image_url = article["urlToImage"]
                 published_at = article["publishedAt"]
+                source = article['source']
 
-                slack_text += self.get_slack_text(author, title, description, url, image_url, published_at) + "\n"
-            return slack_text
+                slack_msg.append(self.get_slack_text(author, title, description, url, image_url, published_at, source))
+            return slack_msg
         else:
             return "An error occurred"
 
     @staticmethod
-    def get_slack_text(author, title, description, url, image_url, published_at):
-        return "*Author:* {} \n " \
-               "*Title:* {} \n " \
-               "*Description:* {} \n" \
-               "*Date:* {} \n" \
-               "{} \n" \
-               "{} \n".format(author, title, description, published_at, image_url, url)
+    def get_slack_text(author, title, description, url, image_url, published_at, source):
+        return {
+            "fallback": title,
+            "color": "#2eb886",
+            "pretext": title,
+            "author_name": author,
+            "title": title,
+            "title_link": url,
+            "text": description,
+            "fields": [
+                {
+                    "title": "Source",
+                    "value": source['name'],
+                    "short": False
+                }
+            ],
+            "image_url": image_url,
+            "footer": "Lit Bot",
+            "ts": 123456789
+        }
