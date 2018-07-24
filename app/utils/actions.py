@@ -27,7 +27,8 @@ class Actions:
     def allowed_commands():
         return [
             'help',
-            'headlines'
+            'headlines',
+            'my headlines'
         ]
 
     @staticmethod
