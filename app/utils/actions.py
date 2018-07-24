@@ -31,5 +31,5 @@ class Actions:
         return slack_helper.get_user_info(uid)
 
     @staticmethod
-    def send_to_user(user_id, msg):
-        return slack_helper.post_message(msg, user_id)
+    def send_headlines_to_user(user_id):
+        return slack_helper.post_message(news.get_top_headlines(), user_id)

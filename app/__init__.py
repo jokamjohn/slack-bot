@@ -24,7 +24,7 @@ def lit():
 
     if command == 'headlines':
         response_body = Actions.headlines()
-        Actions.send_to_user(slack_user_uid)
+        Actions.send_headlines_to_user(slack_user_uid)
 
     response = jsonify(response_body)
     response.status_code = 200
