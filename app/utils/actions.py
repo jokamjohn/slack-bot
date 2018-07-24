@@ -24,6 +24,12 @@ class Actions:
         slack_helper.post_message_with_attachment(news.get_top_headlines())
 
     @staticmethod
+    def get_headlines_payload():
+        return {
+            "attachments": news.get_top_headlines()
+        }
+
+    @staticmethod
     def allowed_commands():
         return [
             'help',

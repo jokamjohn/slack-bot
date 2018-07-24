@@ -23,7 +23,7 @@ def lit():
         response_body = Actions.help()
 
     if command == 'headlines':
-        response_body = Actions.headlines()
+        response_body = Actions.get_headlines_payload()
 
     if command == 'my headlines':
         return Actions.send_headlines_to_user(slack_user_uid)
