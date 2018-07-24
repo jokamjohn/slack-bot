@@ -15,7 +15,8 @@ class Actions:
             "attachments": [
                 {
                     "text": "`/lit headlines` To get the top headlines \n " +
-                    "`/lit my headlines` To get the headlines within your dm"
+                    "`/lit my headlines` To get the headlines within your dm \n" +
+                    "`/lit sports` To get the latest sports news \n"
                 }
             ]
         }
