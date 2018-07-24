@@ -12,8 +12,8 @@ def home():
 
 @app.route('/lit-bot', methods=['POST'])
 def lit():
-    command = request.data.get('text')
-    slack_user_uid = request.data.get('user_id')
+    command = request.form.get('text')
+    slack_user_uid = request.form.get('user_id')
     slack_user_info = Actions.get_user_info(slack_user_uid)
     response_body = ''
 
