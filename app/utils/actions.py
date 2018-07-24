@@ -14,7 +14,8 @@ class Actions:
             "text": "Available Commands",
             "attachments": [
                 {
-                    "text": "`/lit headlines` To get the top headlines"
+                    "text": "`/lit headlines` To get the top headlines \n " +
+                    "`/lit my headlines` To get the headlines within your dm"
                 }
             ]
         }
@@ -34,7 +35,8 @@ class Actions:
         return [
             'help',
             'headlines',
-            'my headlines'
+            'my headlines',
+            'sports',
         ]
 
     @staticmethod
@@ -44,3 +46,9 @@ class Actions:
     @staticmethod
     def send_headlines_to_user(user_id):
         return slack_helper.post_message_to_user_with_attachments(news.get_top_headlines(), user_id)
+
+    @staticmethod
+    def get_sports_payload():
+        return {
+            "attachments": news.get_sports_news()
+        }

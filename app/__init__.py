@@ -28,6 +28,9 @@ def lit():
     if command == 'my headlines':
         return Actions.send_headlines_to_user(slack_user_uid)
 
+    if command == 'sports':
+        response_body = Actions.get_sports_payload()
+
     response = jsonify(response_body)
     response.status_code = 200
     return response
